@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+    <!-- MediaPipe Tasks Vision を ES Module として読み込み、window に公開 -->
+    <script type="module">
+      import {
+        FilesetResolver,
+        HandLandmarker
+      } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/vision_bundle.mjs";
+      // p5 の通常スクリプトから使えるようにグローバルへ露出
+      window.FilesetResolver = FilesetResolver;
+      window.HandLandmarker = HandLandmarker;
+      console.log("MediaPipe module loaded");
+    </script>
+  </head>
+  <body>
+    <main></main>
+    <script src="sketch.js"></script>
+  </body>
+</html>
