@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>うろ覚え探偵</title>
+  <link rel="stylesheet" href="guess.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>うろ覚え探偵</h1>
+    <p class="subtitle">タイトルも名前もうろ覚え。断片的なヒントだけで、AIが固有名詞を当てにいきます。</p>
+  </header>
+
+  <section class="settings" id="settings">
+    <button type="button" class="settings-toggle" id="settingsToggle" aria-expanded="false">
+      ⚙ APIキー設定
+    </button>
+    <div class="settings-body" id="settingsBody" hidden>
+      <label for="apiKeyInput">Anthropic APIキー</label>
+      <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off" />
+
+      <label for="modelSelect">モデル</label>
+      <select id="modelSelect">
+        <option value="claude-opus-5-5">Claude Opus 5.5（高精度・default）</option>
+        <option value="claude-sonnet-5-5">Claude Sonnet 5.5（バランス）</option>
+        <option value="claude-haiku-4-5">Claude Haiku 4.5（高速・低コスト）</option>
+      </select>
+
+      <div class="settings-actions">
+        <button type="button" id="saveKeyBtn">保存</button>
+        <button type="button" id="clearKeyBtn" class="secondary">削除</button>
+      </div>
+
+      <p class="notice">
+        ・APIキーはこの端末のブラウザ内（localStorage）にのみ保存され、Anthropic APIに直接送信されます。サーバーには送られません。<br>
+        ・共有PCやブラウザでは使用しないでください。<br>
+        ・キーは <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Anthropic Console</a> で取得できます。
+      </p>
+    </div>
+  </section>
+
+  <main class="chat" id="chat" aria-live="polite"></main>
+
+  <form class="composer" id="composerForm">
+    <textarea
+      id="userInput"
+      placeholder="うろ覚えの手がかりを入力（例：10年くらい前に読んだ、表紙が青くて、主人公が時間を止められる小説）&#10;Enterで送信 / Shift+Enterで改行"
+      rows="2"
+    ></textarea>
+    <div class="composer-actions">
+      <button type="button" id="resetBtn" class="secondary">最初からやり直す</button>
+      <button type="submit" id="sendBtn">送信</button>
+    </div>
+  </form>
+
+  <script src="guess.js"></script>
+</body>
+</html>
